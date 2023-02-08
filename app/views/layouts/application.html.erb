@@ -6,8 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/408f7fccd2.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -20,7 +21,7 @@
         <%= link_to "会員一覧",admin_customers_path %>
       </li>
       <li>
-        <%= link_to "注文履歴一覧" %>
+        <%= link_to "注文履歴一覧",admin_root_path %>
       </li>
       <li>
         <%= link_to "ジャンル一覧",admin_genres_path %>

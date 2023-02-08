@@ -4,14 +4,14 @@
   <h6>ジャンル名</h6>
    <%= f.text_field :name %>
 
-  <%= f.submit '新規登録' %>
-
+   <%= f.submit '新規登録' %>
   <% end %>
 
   <h6>ジャンル</h6>
   <% @genre.each do |genre| %>
   <div>
     <p><%= genre.name %></p>
+    <p><%= link_to "編集する",edit_admin_genre_path(genre.id) %></p>
   </div>
   <% end %>
 </body>
