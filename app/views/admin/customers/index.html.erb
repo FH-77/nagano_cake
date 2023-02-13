@@ -15,9 +15,9 @@
           <% @customer.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
-            <td><%= customer.name %></td>
+            <td><%= customer.last_name %><%= customer.first_name %></td>
             <td><%= customer.email %></td>
-            <td><%= customer.is_deleated %></td>
+            <td></td>
             <td></td>
           </tr>
           <% end %>
