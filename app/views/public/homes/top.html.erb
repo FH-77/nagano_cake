@@ -6,7 +6,13 @@
   </text>
 
   <h4>新着商品</h4>
-  <div>
+  <% @item.each do |item| %>
+   <table>
+    <th><%= image_tag item.image %></th>
+    <th><%= item.name %></th>
+    <th>¥<%= item.price %></th>
+   </table>
+  <% end %>
 
-  </div>
+  <%= link_to "全ての商品を見る>",items_path %>
 </body>
