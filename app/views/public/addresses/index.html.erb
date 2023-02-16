@@ -24,12 +24,13 @@
      <td></td>
     </tr>
    </table>
-  <%= @alladdress.each do |address| %>
+  <% @alladdress.each do |address| %>
    <table>
      <tr>
-       <td><%= address.pastal_code %></td>
+       <td><%= address.postal_code %></td>
        <td><%= address.address %></td>
        <td><%= address.name %></td>
+       <td><%= link_to "編集する",edit_address_path(address.id),class:"btn btn-success btn-sm" %></td>
      </tr>
    </table>
   <% end %>
