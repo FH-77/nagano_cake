@@ -18,20 +18,20 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :addresses,only:[:index,:edit,:create,:update,:destroy]
-    resources :orders,only:[:new,:index,:show,:create]
-    resources :cart_items,only:[:index,:update,:destroy,:create]
-    resources :items,only:[:index,:show]
     get "/customers" => "customers#show"
     get "/customers/information/edit" => "customers#edit"
     patch "/customers/information" => "customers#update"
     get "/" => "homes#top"
     get "/about" => "homes#about",as: "about"
-    get 'orders/confirm'
+    post 'orders/confirm' => "orders#confirm"
     get 'orders/complete'
     get 'customers/confirmation'
-    patch 'customers/withdraw'
+    patch 'customers/withdraw' => "customers#withdraw"
     delete 'cart_items/destroy_all'
+    resources :addresses,only:[:index,:edit,:create,:update,:destroy]
+    resources :orders,only:[:new,:index,:show,:create]
+    resources :cart_items,only:[:index,:update,:destroy,:create]
+    resources :items,only:[:index,:show]
   end
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

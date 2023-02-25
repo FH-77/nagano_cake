@@ -1,2 +1,41 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<body>
+  <h3>注文履歴詳細</h3>
+   <p>
+    <label for="inputName">注文日</label>
+    <%= @order.created_at %>
+   </p>
+   <p>
+    <label for="inputName">配送先</label>
+    <%= @order.address %>
+   </p>
+   <p>
+    <label for="inputName">支払方法</label>
+    <%= @order.payment_method %>
+   </p>
+   <p>
+    <label for="inputName">ステータス</label>
+    <%= @order.order_status %>
+   </p>
+   <p>
+    <label for="inputName">商品合計</label>
+    <%= total.to_i %>
+   </p>
+   <p>
+    <label for="inputName">配送料</label>
+    <%= @order.postage %>
+   </p>
+    <p>
+    <label for="inputName">ご請求額</label>
+    <%= @order.payment %>
+   </p>
+ <% @ordered_items.each do |items| %>
+   <table>
+     <tr>
+       <td><%= items.name %></td>
+       <td><%= items.price %></td>
+       <td><%= items.amount %></td>
+       <td><%= items.price*items.amount %></td>
+     </tr>
+   </table>
+ <% end %>
+</body>

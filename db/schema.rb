@@ -116,11 +116,14 @@ ActiveRecord::Schema.define(version: 2023_02_08_052437) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "order_id", null: false
-    t.integer "purchase_price", null: false
-    t.integer "amount", null: false
-    t.integer "crafting_status", null: false
+    t.integer "customer_id", null: false
+    t.string "shipping_postal_code", null: false
+    t.text "shipping_address", null: false
+    t.string "shipping_name", null: false
+    t.integer "postage", null: false
+    t.integer "payment", null: false
+    t.integer "payment_method", null: false
+    t.integer "order_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
