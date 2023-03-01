@@ -1,12 +1,15 @@
 <body>
   <h3>注文履歴詳細</h3>
+  <h6>注文情報</h6>
    <p>
     <label for="inputName">注文日</label>
     <%= @order.created_at %>
    </p>
    <p>
     <label for="inputName">配送先</label>
-    <%= @order.address %>
+    <%= @order.shipping_postal_code %><br/>
+    <%= @order.shipping_address %><br/>
+    <%= @order.shipping_name %>
    </p>
    <p>
     <label for="inputName">支払方法</label>
@@ -16,9 +19,11 @@
     <label for="inputName">ステータス</label>
     <%= @order.order_status %>
    </p>
+
+   <h6>請求情報</h6>
    <p>
     <label for="inputName">商品合計</label>
-    <%= total.to_i %>
+    <%= @order.payment-@order.postage %>
    </p>
    <p>
     <label for="inputName">配送料</label>
@@ -28,14 +33,28 @@
     <label for="inputName">ご請求額</label>
     <%= @order.payment %>
    </p>
- <% @ordered_items.each do |items| %>
-   <table>
-     <tr>
-       <td><%= items.name %></td>
-       <td><%= items.price %></td>
-       <td><%= items.amount %></td>
-       <td><%= items.price*items.amount %></td>
-     </tr>
+
+   <table class='table table-bordered border-dark'>
+    <tr class="table-secondary">
+     <th>商品名</th>
+     <th>単価(税込)</th>
+     <th>数量</th>
+     <th>小計</th>
+    </tr>
+    <% total = 0 %>
+    <% @order.order_details.each do |order| %>
+    <tr>
+     <td>
+       <%= order.item.name %>
+     </td>
+     <td><%= (order.item.price*1.1).to_i %></td>
+     <td><%= order.amount %></td>
+     <td>
+      <% subtotal = ((order.item.price*order.amount)*1.1).to_i %>
+      <%= subtotal %>
+     </td>
+    </tr>
+      <% total += (order.item.price*order.amount)*1.1 %>
+    <% end %>
    </table>
- <% end %>
 </body>

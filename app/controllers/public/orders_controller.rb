@@ -6,14 +6,16 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.order_status = 0
     @order.save!
 
     current_customer.cart_items.each do |cart_items|
-      @ordered_item = OrderedItem.new
+      @ordered_item = OrderDetail.new
       @ordered_item.item_id = cart_items.item_id
       @ordered_item.amount = cart_items.amount
-      @ordered_item.with_tax_price = (cart_items.item.price*1.1).floor
+      @ordered_item.purchase_price = (cart_items.item.price*1.1).floor
       @ordered_item.order_id = @order.id
+      @ordered_item.crafting_status = 0
       @ordered_item.save
     end
     current_customer.cart_items.destroy_all
@@ -27,7 +29,7 @@ class Public::OrdersController < ApplicationController
       @order.shipping_address = current_customer.address
       @order.shipping_name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:selected_address] == "1"
-        ship = Address.find(params[:order][:customer_id])
+        ship = Address.find(params[:order][:address_id])
       @order.shipping_postal_code = ship.postal_code
       @order.shipping_address = ship.address
       @order.shipping_name = ship.name
@@ -52,7 +54,6 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @ordered_items = @order.ordered_items
   end
 
   private

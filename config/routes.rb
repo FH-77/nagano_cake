@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get "/customers" => "customers#show"
     get "/customers/information/edit" => "customers#edit"
     patch "/customers/information" => "customers#update"
-    get "/" => "homes#top"
+    root "homes#top"
     get "/about" => "homes#about",as: "about"
     post 'orders/confirm' => "orders#confirm"
     get 'orders/complete'

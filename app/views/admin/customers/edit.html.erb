@@ -1,4 +1,5 @@
 <body>
+ <div class="container">
   <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
   <%= form_with model: @customer ,url: admin_customer_path do |f| %>
     <p>
@@ -33,10 +34,12 @@
     </p>
     <p>
       <label for="inputName">会員ステータス</label>
-
+      <%= f.radio_button :is_deleted, false %>
+       <%= f.label :is_deleted, "有効" %>
+      <%= f.radio_button :is_deleted, true %>
+       <%= f.label :is_deleted, "退会" %>
     </p>
-      <%= f.submit "変更を保存" %>
+      <%= f.submit "変更を保存",class:"btn btn-success btn-sm" %>
   <% end %>
-
-  
+ </div>
 </body>

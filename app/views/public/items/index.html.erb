@@ -1,15 +1,18 @@
 <body>
+ <div class="container">
   <h3>商品一覧</h3>
+
   <% @item.each do |item| %>
-   <table>
-    <th><%= image_tag item.image %></th>
-     <th>
-      <%= link_to item_path(item) do %>
-      <%= item.name %>
-      <% end %>
-    </th>
-    <th>¥<%= item.price %></th>
-   </table>
+   <div class="col-lg-4">
+    <div>
+     <%= link_to item_path(item) do %>
+      <%= image_tag item.image ,size: "130x100" %>
+     <% end %>
+     </div>
+     <div><%= item.name %></div>
+    <div>¥<%= item.price %></div>
+   </div>
   <% end %>
   <%= paginate @item %>
+ </div>
 </body>

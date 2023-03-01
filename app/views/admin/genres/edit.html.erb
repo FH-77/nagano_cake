@@ -1,7 +1,15 @@
-<h3>ジャンル編集</h3>
-<%= form_with model: @genres, url: admin_genre_path(@genres) do |f| %>
-  <label for="inputName">ジャンル名</label>
-  <ul><%= f.text_field :name, autofocus: true, id:"inputName" %></ul>
+<body>
+ <div class="container">
 
-  <ul><%= f.submit "変更を保存" %></ul>
-<% end %>
+  <h3>ジャンル編集</h3>
+  <%= form_with model: @genres, url: admin_genre_path(@genres) do |f| %>
+   <p>
+    ジャンル名
+
+    <%= f.text_field :name, autofocus: true %>
+
+    <%= f.submit "変更を保存",class:"btn btn-success" %>
+   </p>
+  <% end %>
+ </div>
+</body>

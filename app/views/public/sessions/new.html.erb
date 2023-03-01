@@ -1,3 +1,4 @@
+<div class="container">
 <h2>ログイン</h2>
 
 <h4>会員の方はこちらからログイン</h4>
@@ -14,10 +15,11 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン",class:"btn btn-success btn-sm" %>
   </div>
 <% end %>
 
 <h4>会員登録がお済みでない方</h4>
-  <%= render "public/shared/links" %>から新規登録を行ってください。
+ <div><%= render "public/shared/links" %>から新規登録を行ってください。</div>
+</div>
 
