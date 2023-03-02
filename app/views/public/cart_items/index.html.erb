@@ -1,19 +1,16 @@
 <body>
  <div class="container">
   <h3>ショッピングカート</h3>
-  <table>
-    <thead>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
-    </thead>
-    <tbody>
+  <p><%= link_to "カートを空にする",cart_items_destroy_all_path(@cart_item),method: :delete,"data-confirm" =>"本当に消しますか？" ,class:"btn btn-sm btn-danger" %></p>
+  <table class="table table-bordered border-dark">
+    <tr>
+      <th class="table-secondary">商品名</th>
+      <th class="table-secondary">単価(税込)</th>
+      <th class="table-secondary">数量</th>
+      <th class="table-secondary">小計</th>
+      <th class="table-secondary"></th>
+    </tr>
       <% @cart_items.each do |cart_item| %>
-      <% if cart_item.customer_id == current_customer.id %>
-       <%= link_to "カートを空にする",cart_items_destroy_all_path(cart_item),method: :delete,"data-confirm" =>"本当に消しますか？" ,class:"btn btn-sm btn-danger" %>
-      <% end %>
       <tr>
        <td><%= image_tag cart_item.item.image, size: "100x70" %><%= cart_item.item.name %></td>
        <td><%= cart_item.item.with_tax_price %></td>
@@ -29,12 +26,18 @@
           <%= link_to "削除する",cart_item_path(cart_item),method: :delete,"data-confirm" =>"本当に消しますか？" ,class:"btn btn-sm btn-danger" %>
          <% end %>
        </td>
-        <p>合計金額<%= @total += (cart_item.item.price * 1.1).floor * cart_item.amount %></p>
       </tr>
-
       <% end %>
-    </tbody>
+
   </table>
+  <div class="col-3">
+   <table class="table table-bordered border-dark">
+    <tr>
+     <th class="table-secondary">合計金額</th>
+     <td><%= @total.round.to_s(:delete)%></td>
+    </tr>
+   </table>
+  </div>
    <p><%= link_to "買い物を続ける",root_path ,class:"btn btn-primary btn-sm"%></p>
    <p>
     <% if @cart_items.any? %>
